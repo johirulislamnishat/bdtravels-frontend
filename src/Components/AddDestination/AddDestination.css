@@ -1,0 +1,14 @@
+.inputStyle{
+    outline: none;
+    margin-bottom: 14px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.inputBtnStyle{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+}

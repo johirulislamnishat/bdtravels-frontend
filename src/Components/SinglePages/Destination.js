@@ -1,57 +1,49 @@
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Container, Button } from 'react-bootstrap';
+
 
 const Destination = () => {
 
+    const [travelPackages, settravelPackage] = useState([]);
+
     const heart = <FontAwesomeIcon icon={faHeart} />
+
+    useEffect(() => {
+        fetch('http://localhost:5000/travelData')
+            .then(res => res.json())
+            .then(data => settravelPackage(data))
+    }, [])
+
     return (
-        <Container>
-            <Row xs={1} md={3} className="g-4">
+        <div className='mt-5'>
 
-                <Col>
-                    <Card>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body>
-                            <Card.Title>Card title</Card.Title>
-                            <Card.Text>
-                                This is a longer card with supporting text below as a natural
-                                lead-in to additional content. This content is a little bit longer.
-                            </Card.Text>
-                            <Button variant="success">Success</Button>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body>
-                            <Card.Title>Card title</Card.Title>
-                            <Card.Text>
-                                This is a longer card with supporting text below as a natural
-                                lead-in to additional content. This content is a little bit longer.
-                            </Card.Text>
-                            <Button variant="success">Success</Button>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Img variant="top" src="holder.js/100px160" />
-                        <Card.Body>
-                            <Card.Title>Card title</Card.Title>
-                            <Card.Text>
-                                This is a longer card with supporting text below as a natural
-                                lead-in to additional content. This content is a little bit longer.
-                            </Card.Text>
-                            <Button variant="success">Success</Button>
-                        </Card.Body>
-                    </Card>
-                </Col>
+            <h2 className='text-center'>Top Destinations</h2>
+            <Container>
+                <Row xs={1} md={3} className="g-4 mt-2">
 
-            </Row>
-        </Container>
+                    {
+                        travelPackages.map(travelPackage => (
+                            <Col key={travelPackage._id}>
+                                <Card>
+                                    <Card.Img variant="top" src={travelPackage.img} />
+                                    <Card.Body>
+                                        <Card.Title>{travelPackage.title}</Card.Title>
+                                        <Card.Text>
+                                            This is a longer card with supporting text below as a natural
+                                            lead-in to additional content. This content is a little bit longer.
+                                        </Card.Text>
+                                        <Button variant="success">Success</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))
+                    }
+
+                </Row>
+            </Container>
+        </div>
     );
 };
 

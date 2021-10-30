@@ -19,10 +19,10 @@ const Header = () => {
 
                     </Nav>
                     <Nav>
-                        <Button variant="primary">Login</Button>
-                        <Link eventKey={2} to="#memes">
-                            Dank memes
-                        </Link>
+                        <Link className='navLink py-1 px-5 bg-primary text-white rounded-pill mr-2' to="/login">Login</Link>
+                        <Link className='navLink py-1 px-5 bg-primary text-white rounded-pill' to="/login">Admin</Link>
+
+
                     </Nav>
                 </Navbar.Collapse>
             </Container>

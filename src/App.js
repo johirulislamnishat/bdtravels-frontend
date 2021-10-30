@@ -7,6 +7,10 @@ import About from './Components/SinglePages/About';
 import Contact from './Components/SinglePages/Contact';
 import Notfound from './Components/SinglePages/Notfound';
 import Destination from './Components/SinglePages/Destination';
+import Footer from './Components/SinglePages/Footer';
+import AddDestination from './Components/AddDestination/AddDestination';
+import Registration from './Components/Authentication/Registration/Registration';
+import Login from './Components/Authentication/Login/Login';
 
 initializeAuthentication();
 
@@ -23,6 +27,12 @@ function App() {
           <Route path='/home'>
             <Home />
           </Route>
+          <Route path='/registration'>
+            <Registration />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
 
           <Route path='/destination'>
             <Destination />
@@ -36,11 +46,16 @@ function App() {
             <Contact />
           </Route>
 
+          <Route path='/admin/add-destinations'>
+            <AddDestination />
+          </Route>
+
           <Route path='*'>
             <Notfound></Notfound>
           </Route>
 
         </Switch>
+        <Footer />
       </Router>
     </>
   );
