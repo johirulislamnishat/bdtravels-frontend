@@ -8,7 +8,7 @@ const AddDestination = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        axios.post('http://localhost:5000/travelData', data)
+        axios.post('https://chilling-pirate-27336.herokuapp.com/travelData/', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Success');
@@ -18,7 +18,7 @@ const AddDestination = () => {
     };
 
     return (
-        <Container className='mt-5'>
+        <Container className='my-5'>
             <form onSubmit={handleSubmit(onSubmit)} className='d-flex flex-column w-75 mx-auto'>
 
                 <input className='inputStyle form-control' {...register("img", { required: true })} placeholder='Enter Image Url' />

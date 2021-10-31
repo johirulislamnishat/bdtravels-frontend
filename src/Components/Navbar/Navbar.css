@@ -2,6 +2,7 @@
     text-decoration: none;
     margin-right: 15px;
     font-size: medium;
+    color: white;
 }
 
 .signOut{
@@ -16,4 +17,8 @@
     margin-right: 15px;
     margin-top: 5px;
     text-align: center;
+}
+
+.logo{
+    width: 50px;
 }

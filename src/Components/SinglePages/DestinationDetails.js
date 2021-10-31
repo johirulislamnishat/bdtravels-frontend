@@ -1,5 +1,5 @@
-import Button from '@restart/ui/esm/Button';
 import React, { useEffect, useState } from 'react';
+import { Spinner, Button } from 'react-bootstrap';
 import { useParams } from 'react-router';
 
 const DestinationDetails = () => {
@@ -10,7 +10,7 @@ const DestinationDetails = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        const url = `http://localhost:5000/travelData/${id}`;
+        const url = `https://chilling-pirate-27336.herokuapp.com/travelData/${id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setTravels(data))
@@ -20,7 +20,7 @@ const DestinationDetails = () => {
     const handleCancelTravel = id => {
         const proceed = window.confirm('Are you sure you want to delete?');
         if (proceed) {
-            const url = `http://localhost:5000/travelData/${id}`;
+            const url = `https://chilling-pirate-27336.herokuapp.com/travelData/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -37,8 +37,24 @@ const DestinationDetails = () => {
 
     return (
         <div>
-            <h1>Image: {travels.img}</h1>
-            <Button className='bd-danger' onClick={() => handleCancelTravel(travels._id)}>Cancel</Button>
+            {
+                travels.length === 0 ? <Button className='w-100 mx-auto' variant="primary" disabled>
+                    <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    <span className='ml-2'>Loading...</span>
+                </Button> :
+                    <div>
+                        <img src={travels.img} alt="" />
+                        <h1>{travels.title}</h1>
+                    </div>
+            }
+
+            <Button className='bg-danger' onClick={() => handleCancelTravel(travels._id)}>Cancel</Button>
 
         </div>
     );

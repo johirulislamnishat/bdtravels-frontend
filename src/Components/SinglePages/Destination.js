@@ -1,48 +1,70 @@
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
+
+import { faHeart, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import { Card, Row, Col, Container, Button } from 'react-bootstrap';
+import { Card, Row, Col, Container, Button, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import '../Shared/Common.css'
 
 
 const Destination = () => {
 
     const [travelPackages, settravelPackage] = useState([]);
 
-    const heart = <FontAwesomeIcon icon={faHeart} />
+    // const heart = <FontAwesomeIcon icon={faHeart} />
+    const location = <FontAwesomeIcon icon={faMapMarkerAlt} />
 
     useEffect(() => {
-        fetch('http://localhost:5000/travelData')
+        fetch('https://chilling-pirate-27336.herokuapp.com/travelData/')
             .then(res => res.json())
+            // .then(data => console.log(data))
             .then(data => settravelPackage(data))
     }, [])
 
     return (
-        <div className='mt-5'>
+        <div className='my-5'>
 
-            <h2 className='text-center'>Top Destinations</h2>
+            <h2 className='text-center textColor'>Top Destinations</h2>
             <Container>
-                <Row xs={1} md={3} className="g-4 mt-2">
 
-                    {
-                        travelPackages.map(travelPackage => (
-                            <Col key={travelPackage._id}>
-                                <Card>
-                                    <Card.Img variant="top" src={travelPackage.img} />
-                                    <Card.Body>
-                                        <Card.Title>{travelPackage.title}</Card.Title>
-                                        <Card.Text>
-                                            This is a longer card with supporting text below as a natural
-                                            lead-in to additional content. This content is a little bit longer.
-                                        </Card.Text>
-                                        <Link to={`/destination-details/${travelPackage._id}`}><Button variant="success">Success</Button></Link>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))
-                    }
+                {travelPackages.length === 0 ? <Button className='w-100 mx-auto' variant="primary" disabled>
+                    <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    <span className='ml-2'>Loading...</span>
+                </Button> :
+                    <Row xs={1} md={3} className="g-4 mt-2">
 
-                </Row>
+                        {
+                            travelPackages.map(travelPackage => (
+                                <Col key={travelPackage._id}>
+                                    <Card>
+                                        <Card.Img variant="top" className='destinationImage' src={travelPackage.img} />
+                                        <Card.Body>
+                                            <div className='d-flex justify-content-between'>
+
+                                                <Card.Title>{travelPackage.title}</Card.Title>
+
+                                                <Card.Title>$ {travelPackage.discount}</Card.Title>
+                                            </div>
+                                            <Card.Text>{travelPackage.description}
+                                            </Card.Text>
+
+                                            <Card.Text><i className='text-secondary'>{location} </i> {travelPackage.location}</Card.Text>
+
+                                            <Link to={`/destination-details/${travelPackage._id}`}><Button variant="primary" className='py-2 px-5 rounded-pill'>Book Now</Button></Link>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))
+                        }
+
+                    </Row>
+                }
             </Container>
         </div>
     );

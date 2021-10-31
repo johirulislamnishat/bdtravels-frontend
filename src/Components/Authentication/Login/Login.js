@@ -1,11 +1,22 @@
 import React from 'react';
 import { Container, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import './Login.css';
 import useAuth from '../../Hooks/useAuth';
 const Login = () => {
 
     const { signInUsingGoogle } = useAuth();
+    const location = useLocation();
+    const history = useHistory();
+
+    const redirect_uri = location.state?.from || '/home';
+
+    const handleGoogleLogin = () => {
+        signInUsingGoogle()
+            .then(result => {
+                history.push(redirect_uri);
+            })
+    }
 
     return (
         <div className="bg-dark">
@@ -62,7 +73,7 @@ const Login = () => {
                                                     <div className="orLabel">or</div>
                                                     <div className="lineSeparator"></div>
                                                 </div>
-                                                <button className='googleBtn' onClick={signInUsingGoogle}><Link className="btn btn-lg btnGoogle btn-outline w-100 rounded-pill" to="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Signin Using Google</Link></button>
+                                                <button className='googleBtn' onClick={handleGoogleLogin}><Link className="btn btn-lg btnGoogle btn-outline w-100 rounded-pill" to="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Signin Using Google</Link></button>
                                                 <p className="text-center text-muted mt-3">Don't have an account? <Link to="/registration" className="fw-bold text-primary registration">Registration here</Link></p>
                                             </div>
                                         </form>

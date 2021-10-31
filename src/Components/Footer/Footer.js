@@ -1,10 +1,21 @@
+import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import logo from '../../../src/logo.png';
+import './Footer.css'
 
 const Footer = () => {
+
+    const fb = <FontAwesomeIcon icon={faFacebook} />
+    const ig = <FontAwesomeIcon icon={faInstagram} />
+    const ln = <FontAwesomeIcon icon={faLinkedin} />
+    const yt = <FontAwesomeIcon icon={faYoutube} />
+
+
     return (
 
-        <div className="bg-secondary mt-5">
+        <div className="bg-dark">
             <Container>
                 {/* Footer */}
                 <footer
@@ -18,13 +29,9 @@ const Footer = () => {
                             <div className="row">
                                 {/* Grid column */}
                                 <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                                    <h6 className="text-uppercase mb-4 font-weight-bold">
-                                        Company name
-                                    </h6>
+                                    <img className='footerLogo' src={logo} alt="" />
                                     <p>
-                                        Here you can use rows and columns to organize your footer
-                                        content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                                        elit.
+                                        Welcome the latest travel booking world. This is the world class company. So let's enjoy!!!!!
                                     </p>
                                 </div>
                                 {/* Grid column */}
@@ -33,18 +40,18 @@ const Footer = () => {
 
                                 {/* Grid column */}
                                 <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                                    <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
+                                    <h6 className="text-uppercase mb-4 font-weight-bold">Destination</h6>
                                     <p>
-                                        <a className="text-white">MDBootstrap</a>
+                                        <a className="text-white">Bangladesh</a>
                                     </p>
                                     <p>
-                                        <a className="text-white">MDWordPress</a>
+                                        <a className="text-white">USA</a>
                                     </p>
                                     <p>
-                                        <a className="text-white">BrandFlow</a>
+                                        <a className="text-white">UK</a>
                                     </p>
                                     <p>
-                                        <a className="text-white">Bootstrap Angular</a>
+                                        <a className="text-white">Canada</a>
                                     </p>
                                 </div>
                                 {/* Grid column */}
@@ -97,47 +104,37 @@ const Footer = () => {
                                     {/* Copyright */}
                                     <div className="p-3">
                                         © 2020 Copyright:
-                                        <a className="text-white" href="https://mdbootstrap.com/"
-                                        >MDBootstrap.com</a
-                                        >
+                                        <a className="text-white" href="#"
+                                        >Happy Travelling</a>
                                     </div>
                                     {/* Copyright */}
                                 </div>
                                 {/* Grid column */}
 
                                 {/* Grid column */}
-                                <div className="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                                <div className="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end ">
                                     {/* Facebook */}
                                     <a
-                                        className="btn btn-outline-light btn-floating m-1"
-                                        className="text-white"
+                                        className="btn btn-outline-light btn-floating m-1 text-white mr-2"
                                         role="button"
-                                    ><i className="fab fa-facebook-f"></i
-                                    ></a>
+                                    >{fb}</a>
 
                                     {/* Twitter  */}
                                     <a
-                                        className="btn btn-outline-light btn-floating m-1"
-                                        className="text-white"
+                                        className="btn btn-outline-light btn-floating m-1 text-white mr-2"
                                         role="button"
-                                    ><i className="fab fa-twitter"></i
-                                    ></a>
+                                    >{ln}</a>
 
                                     {/* Google  */}
                                     <a
-                                        className="btn btn-outline-light btn-floating m-1"
-                                        className="text-white"
-                                        role="button"
-                                    ><i className="fab fa-google"></i
-                                    ></a>
+                                        className="btn btn-outline-light btn-floating m-1 text-white mr-2"
+                                        role="button">{yt}</a>
 
                                     {/* Instagram  */}
                                     <a
-                                        className="btn btn-outline-light btn-floating m-1"
-                                        className="text-white"
+                                        className="btn btn-outline-light btn-floating m-1 text-white"
                                         role="button"
-                                    ><i className="fab fa-instagram"></i
-                                    ></a>
+                                    >{ig}</a>
                                 </div>
                             </div>
                         </section>
