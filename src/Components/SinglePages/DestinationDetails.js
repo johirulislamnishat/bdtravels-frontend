@@ -51,6 +51,7 @@ const DestinationDetails = () => {
                     <div>
                         <img src={travels.img} alt="" />
                         <h1>{travels.title}</h1>
+                        <h1>$ {travels.discount}</h1>
                     </div>
             }
 
