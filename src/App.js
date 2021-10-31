@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-import initializeAuthentication from './Components/Authentication/Firebase/firebase.init';
 import Home from './Components/SinglePages/Home';
 import Navbar from './Components/Navbar/Navbar';
 import About from './Components/SinglePages/About';
@@ -11,52 +10,59 @@ import Footer from './Components/SinglePages/Footer';
 import AddDestination from './Components/AddDestination/AddDestination';
 import Registration from './Components/Authentication/Registration/Registration';
 import Login from './Components/Authentication/Login/Login';
+import DestinationDetails from './Components/SinglePages/DestinationDetails'
+import AuthProvider from './Context/AuthProvider';
 
-initializeAuthentication();
 
 function App() {
   return (
     <>
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path='/'>
-            <Home />
-          </Route>
+      <AuthProvider>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path='/'>
+              <Home />
+            </Route>
 
-          <Route path='/home'>
-            <Home />
-          </Route>
-          <Route path='/registration'>
-            <Registration />
-          </Route>
-          <Route path='/login'>
-            <Login />
-          </Route>
+            <Route path='/home'>
+              <Home />
+            </Route>
+            <Route path='/registration'>
+              <Registration />
+            </Route>
+            <Route path='/login'>
+              <Login />
+            </Route>
 
-          <Route path='/destination'>
-            <Destination />
-          </Route>
+            <Route path='/destination'>
+              <Destination />
+            </Route>
 
-          <Route path='/about'>
-            <About />
-          </Route>
+            <Route path='/about'>
+              <About />
+            </Route>
 
-          <Route path='/contact'>
-            <Contact />
-          </Route>
+            <Route path='/contact'>
+              <Contact />
+            </Route>
 
-          <Route path='/admin/add-destinations'>
-            <AddDestination />
-          </Route>
+            <Route path='/admin/add-destinations'>
+              <AddDestination />
+            </Route>
 
-          <Route path='*'>
-            <Notfound></Notfound>
-          </Route>
+            <Route path='/destination-details/:id'>
+              <DestinationDetails />
+            </Route>
 
-        </Switch>
-        <Footer />
-      </Router>
+            <Route path='*'>
+              <Notfound></Notfound>
+            </Route>
+
+          </Switch>
+          <Footer />
+        </Router>
+      </AuthProvider>
     </>
   );
 }

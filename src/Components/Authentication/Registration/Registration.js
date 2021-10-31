@@ -75,7 +75,7 @@ const Registration = () => {
                                                     <div className="lineSeparator"></div>
                                                 </div>
                                                 <Link className="btn btn-lg btnGoogle btn-outline w-100 rounded-pill mb-3" to="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Signup Using Google</Link>
-                                                <p className="text-center text-muted mt-2">Already have an account? <Link to="/login" className="fw-bold text-body">Login here</Link></p>
+                                                <p className="text-center text-muted mt-2">Already have an account? <Link to="/login" className="fw-bold text-primary login">Login here</Link></p>
                                             </div>
                                         </form>
 

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Login.css'
-
+import './Login.css';
+import useAuth from '../../Hooks/useAuth';
 const Login = () => {
+
+    const { signInUsingGoogle } = useAuth();
+
     return (
         <div className="bg-dark">
             <Container className="h-100">
@@ -59,8 +62,8 @@ const Login = () => {
                                                     <div className="orLabel">or</div>
                                                     <div className="lineSeparator"></div>
                                                 </div>
-                                                <Link className="btn btn-lg btnGoogle btn-outline w-100 rounded-pill mb-3" to="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Signin Using Google</Link>
-                                                <p className="text-center text-muted mt-2">Don't have an account? <Link to="/registration" className="fw-bold text-body">Registration here</Link></p>
+                                                <button className='googleBtn' onClick={signInUsingGoogle}><Link className="btn btn-lg btnGoogle btn-outline w-100 rounded-pill" to="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Signin Using Google</Link></button>
+                                                <p className="text-center text-muted mt-3">Don't have an account? <Link to="/registration" className="fw-bold text-primary registration">Registration here</Link></p>
                                             </div>
                                         </form>
 

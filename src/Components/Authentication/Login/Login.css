@@ -22,3 +22,12 @@
     margin: 0 15px;
     text-align: center
 }
+
+.googleBtn{
+    border: 0;
+    background-color: transparent;
+}
+
+.registration{
+    text-decoration: none;
+}

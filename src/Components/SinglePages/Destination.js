@@ -2,6 +2,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Container, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 const Destination = () => {
@@ -34,7 +35,7 @@ const Destination = () => {
                                             This is a longer card with supporting text below as a natural
                                             lead-in to additional content. This content is a little bit longer.
                                         </Card.Text>
-                                        <Button variant="success">Success</Button>
+                                        <Link to={`/destination-details/${travelPackage._id}`}><Button variant="success">Success</Button></Link>
                                     </Card.Body>
                                 </Card>
                             </Col>
