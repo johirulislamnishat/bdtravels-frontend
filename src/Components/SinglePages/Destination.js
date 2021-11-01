@@ -1,5 +1,4 @@
-
-import { faHeart, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Container, Button, Spinner } from 'react-bootstrap';
@@ -15,7 +14,7 @@ const Destination = () => {
     const location = <FontAwesomeIcon icon={faMapMarkerAlt} />
 
     useEffect(() => {
-        fetch('https://chilling-pirate-27336.herokuapp.com/travelData/')
+        fetch('https://chilling-pirate-27336.herokuapp.com/travelData')
             .then(res => res.json())
             // .then(data => console.log(data))
             .then(data => settravelPackage(data))

@@ -8,7 +8,7 @@ const AddDestination = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        axios.post('https://chilling-pirate-27336.herokuapp.com/travelData/', data)
+        axios.post('https://chilling-pirate-27336.herokuapp.com/travelData', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Success');
