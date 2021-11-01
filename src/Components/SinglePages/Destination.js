@@ -55,7 +55,10 @@ const Destination = () => {
 
                                             <Card.Text><i className='text-secondary'>{location} </i> {travelPackage.location}</Card.Text>
 
-                                            <Link to={`/destination-details/${travelPackage._id}`}><Button variant="primary" className='py-2 px-5 rounded-pill'>Book Now</Button></Link>
+                                            <div className='d-flex justify-content-between'>
+                                                <Link to={`/destination-details/${travelPackage._id}`}><Button variant="primary" className='py-2 px-5 rounded-pill'>Book Now</Button>
+                                                </Link>
+                                            </div>
                                         </Card.Body>
                                     </Card>
                                 </Col>

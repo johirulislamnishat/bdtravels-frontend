@@ -1,10 +1,10 @@
 Happy Traveling
 
-Live Site:
+Live Site: https://bdtravels-app.web.app/
 
 - Features:
 - Travel Booking
-- Travel Cencel
+- Travel Cancel
 - Destination 
 - Price Selection
 - Realtime update

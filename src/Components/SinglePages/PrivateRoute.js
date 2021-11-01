@@ -1,10 +1,23 @@
 import React from 'react';
+import { Button, Spinner } from 'react-bootstrap';
 import { Redirect, Route } from 'react-router';
 import useAuth from '../Hooks/useAuth';
 
 const PrivateRoute = ({ children, ...rest }) => {
 
-    const { user } = useAuth();
+    const { user, isLoading } = useAuth();
+    if (isLoading) {
+        return <Button className='w-100 mx-auto' variant="primary" disabled>
+            <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+            />
+            <span className='ml-2'>Loading...</span>
+        </Button>
+    }
     return (
         <Route
 

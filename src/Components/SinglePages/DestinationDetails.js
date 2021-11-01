@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Spinner, Button } from 'react-bootstrap';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const DestinationDetails = () => {
 
@@ -49,15 +50,33 @@ const DestinationDetails = () => {
                     <span className='ml-2'>Loading...</span>
                 </Button> :
                     <div>
-                        <img src={travels.img} alt="" />
-                        <h1>{travels.title}</h1>
-                        <h1>$ {travels.discount}</h1>
+                        <div className="card mb-3">
+                            <div className="row g-0">
+                                <div className="col-md-4">
+                                    <img src={travels.img} className="img-fluid rounded-start" alt="..." />
+                                </div>
+                                <div className="col-md-8">
+                                    <div className="card-body">
+                                        <h5 className="card-title">{travels.title}</h5>
+                                        <h5 className="card-title">$ {travels.discount}</h5>
+                                        <p className="card-text">{travels.description}</p>
+                                        <p className="card-text"><small className="text-muted">{travels.location}</small></p>
+
+
+                                        <Link to=''><Button variant="primary" className='py-2 px-4 rounded-pill'>Update</Button></Link>
+
+                                        <Button className='bg-danger' onClick={() => handleCancelTravel(travels._id)}>Delete</Button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
             }
 
-            <Button className='bg-danger' onClick={() => handleCancelTravel(travels._id)}>Cancel</Button>
 
-        </div>
+
+        </div >
     );
 };
 
