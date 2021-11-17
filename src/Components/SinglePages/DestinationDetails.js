@@ -66,7 +66,7 @@ const DestinationDetails = () => {
                         />
                         <span className='ml-2'>Loading...</span>
                     </Button> :
-                        <Row xs={1} md={2} className="g-4 mt-2">
+                        <Row xs={1} md={2} className="g-4 mt-2 bg-white">
 
                             <Col xs={6}>
                                 <Card>

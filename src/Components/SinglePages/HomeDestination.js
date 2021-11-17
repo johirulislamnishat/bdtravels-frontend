@@ -40,7 +40,7 @@ const HomeDestination = () => {
                         {
                             travelPackages.map(travelPackage => (
                                 <Col key={travelPackage._id}>
-                                    <Card>
+                                    <Card className='bg-white'>
                                         <Card.Img variant="top" className='destinationImage' src={travelPackage.img} />
                                         <Card.Body>
                                             <div className='d-flex justify-content-between'>

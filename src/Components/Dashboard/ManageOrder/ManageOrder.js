@@ -24,7 +24,7 @@ const ManageAll = () => {
     const handleCancelOrder = id => {
         const proceed = window.confirm('Are you sure you want to delete?');
         if (proceed) {
-            const url = `http://localhost:5000/deleteOrders/${id}`;
+            const url = `https://chilling-pirate-27336.herokuapp.com/deleteOrders/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -69,7 +69,7 @@ const ManageAll = () => {
                     <div className="col-sm-10">
                         <div className="well">
                             <div class="container">
-                                <div class="row">
+                                <div class="row bg-white">
                                     <div class="col-12">
                                         <table class="table table-bordered">
                                             <thead>

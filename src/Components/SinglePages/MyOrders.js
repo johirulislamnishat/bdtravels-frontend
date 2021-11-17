@@ -15,7 +15,7 @@ const MyOrders = () => {
     const location = <FontAwesomeIcon icon={faMapMarkerAlt} />
 
     useEffect(() => {
-        fetch(`http://localhost:5000/ordersData/${email}`)
+        fetch(`https://chilling-pirate-27336.herokuapp.com/${email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
     })
