@@ -5,19 +5,20 @@ import useAuth from '../Hooks/useAuth';
 
 const PrivateRoute = ({ children, ...rest }) => {
 
-    const { user, isLoading } = useAuth();
-    if (isLoading) {
-        return <Button className='w-100 mx-auto' variant="primary" disabled>
-            <Spinner
-                as="span"
-                animation="border"
-                size="sm"
-                role="status"
-                aria-hidden="true"
-            />
-            <span className='ml-2'>Loading...</span>
-        </Button>
-    }
+    const { user, setUser, isLoading } = useAuth();
+    // if (isLoading) {
+    //     return 'All Ok'
+    //     // <Button className='w-100 mx-auto' variant="primary" disabled>
+    //     //     <Spinner
+    //     //         as="span"
+    //     //         animation="border"
+    //     //         size="sm"
+    //     //         role="status"
+    //     //         aria-hidden="true"
+    //     //     />
+    //     //     <span className='ml-2'>Loading...</span>
+    //     // </Button>
+    // }
     return (
         <Route
 

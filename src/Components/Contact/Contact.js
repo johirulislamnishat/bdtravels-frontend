@@ -1,9 +1,11 @@
 import React from 'react';
-import './Contact.css'
+import './Contact.css';
+import Header from '../Navbar/Navigation'
 
 const Contact = () => {
     return (
         <div>
+            <Header />
             <div className="container contact-form">
                 <div className="contact-image">
                     <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />

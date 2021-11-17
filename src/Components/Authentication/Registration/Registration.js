@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 import './Registration.css'
 
 const Registration = () => {
+    const [user, setUser] = useState({});
+    const { signInUsingGoogle } = useAuth();
+    const location = useLocation();
+    const history = useHistory();
+    const redirect_uri = location?.state?.from || '/';
+
+    const handleGoogleLogin = () => {
+        signInUsingGoogle(location, history)
+            .then(result => {
+                history.push(redirect_uri);
+
+                setUser(result.user);
+                sessionStorage.setItem("email", result.user.email);
+            })
+    }
     return (
 
         <div className="bg-dark">
@@ -74,7 +90,9 @@ const Registration = () => {
                                                     <div className="orLabel">or</div>
                                                     <div className="lineSeparator"></div>
                                                 </div>
-                                                <Link className="btn btn-lg btnGoogle btn-outline w-100 rounded-pill mb-3" to="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Signup Using Google</Link>
+
+                                                <button className='googleBtn' onClick={handleGoogleLogin}>
+                                                    <Link className="btn btn-lg btnGoogle btn-outline w-100 rounded-pill mb-3" to="#"><img src="https://img.icons8.com/color/16/000000/google-logo.png" /> Signup Using Google</Link></button>
                                                 <p className="text-center text-muted mt-2">Already have an account? <Link to="/login" className="fw-bold text-primary login">Login here</Link></p>
                                             </div>
                                         </form>

@@ -1,82 +1,121 @@
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import { Spinner, Button } from 'react-bootstrap';
+import { Spinner, Button, Card, Row, Col, Container } from 'react-bootstrap';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import Header from '../Navbar/Navigation';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
 
 const DestinationDetails = () => {
 
+    const map = <FontAwesomeIcon icon={faMapMarkerAlt} />
     const [travels, setTravels] = useState({});
+    const { img, title, discount, description, location } = travels;
 
-    const [cancelTravels, setCancelTravels] = useState([]);
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    // const [cancelTravels, setCancelTravels] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
         const url = `https://chilling-pirate-27336.herokuapp.com/travelData/${id}`;
         fetch(url)
             .then(res => res.json())
-            .then(data => setTravels(data))
-    }, [])
-
-    //Cancel Travel
-    const handleCancelTravel = id => {
-        const proceed = window.confirm('Are you sure you want to delete?');
-        if (proceed) {
-            const url = `https://chilling-pirate-27336.herokuapp.com/travelData/${id}`;
-            fetch(url, {
-                method: 'DELETE'
+            .then(data => {
+                reset()
+                setTravels(data)
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deletedCount > 0) {
-                        alert('Delete Success');
-                        const remainingTravel = cancelTravels.filter(travel => travel._id !== id);
-                        setCancelTravels(remainingTravel);
-                    }
-                })
-        }
-    }
+    }, []);
+
+    const email = sessionStorage.getItem('email')
+    const onSubmit = data => {
+        data.email = (email)
+
+        axios.post('https://chilling-pirate-27336.herokuapp.com/orders', data)
+            .then(res => {
+                // console.log(res);
+                if (res.data.insertedId) {
+                    alert('Success');
+                    reset();
+                }
+            })
+
+        // console.log(data)
+    };
+
 
     return (
-        <div>
-            {
-                travels.length === 0 ? <Button className='w-100 mx-auto' variant="primary" disabled>
-                    <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                    />
-                    <span className='ml-2'>Loading...</span>
-                </Button> :
-                    <div>
-                        <div className="card mb-3">
-                            <div className="row g-0">
-                                <div className="col-md-4">
-                                    <img src={travels.img} className="img-fluid rounded-start" alt="..." />
-                                </div>
-                                <div className="col-md-8">
-                                    <div className="card-body">
-                                        <h5 className="card-title">{travels.title}</h5>
-                                        <h5 className="card-title">$ {travels.discount}</h5>
-                                        <p className="card-text">{travels.description}</p>
-                                        <p className="card-text"><small className="text-muted">{travels.location}</small></p>
+
+        <>
+            <div>
+                <Header />
+            </div>
+
+            <div className='mb-5'>
+
+                <Container>
+
+                    {travels.length === 0 ? <Button className='w-100 mx-auto' variant="primary" disabled>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                        <span className='ml-2'>Loading...</span>
+                    </Button> :
+                        <Row xs={1} md={2} className="g-4 mt-2">
+
+                            <Col xs={6}>
+                                <Card>
+                                    <Card.Img variant="top" className='destinationImage' src={img} />
+                                    <Card.Body>
+                                        <div className='d-flex justify-content-between'>
+
+                                            <Card.Title>{title}</Card.Title>
+
+                                            <Card.Title>$ {discount}</Card.Title>
+                                        </div>
+                                        <Card.Text>{description}
+                                        </Card.Text>
+
+                                        <Card.Text><i className='text-secondary'>{map} </i> {location}</Card.Text>
 
 
-                                        <Link to=''><Button variant="primary" className='py-2 px-4 rounded-pill'>Update</Button></Link>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col xs={6}>
+                                <form onSubmit={handleSubmit(onSubmit)} className='d-flex flex-column w-75 mx-auto'>
 
-                                        <Button className='bg-danger' onClick={() => handleCancelTravel(travels._id)}>Delete</Button>
-                                    </div>
+                                    <input className='inputStyle form-control' {...register("img")} value={img} />
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            }
+                                    <input className='inputStyle form-control' {...register("title")} value={title} />
+
+                                    <input type='number' className='inputStyle form-control' {...register("discount")} value={discount} />
 
 
+                                    <textarea className='inputStyle form-control' {...register("description")} value={description} />
 
-        </div >
+                                    <input className='inputStyle form-control' {...register("location")} value={location} />
+
+
+                                    {errors.exampleRequired && <span>This field is required</span>}
+
+                                    <input className='inputBtnStyle mt-4 w-50 mx-auto rounded-pill bg-primary py-2 px-4' type="submit" value='Confirm' />
+
+
+                                </form>
+                            </Col>
+
+                        </Row>
+                    }
+                </Container>
+
+            </div >
+        </>
     );
 };
 

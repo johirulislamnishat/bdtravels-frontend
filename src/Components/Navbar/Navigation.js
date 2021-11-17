@@ -18,6 +18,7 @@ const Header = () => {
 
                         <Link className='navLink' to="/home">Home</Link>
                         <Link className='navLink' to="/destination">Destination</Link>
+                        <Link className='navLink' to="/my-orders">My Orders</Link>
                         <Link className='navLink' to="/about">About Us</Link>
                         <Link className='navLink' to="/contact">Contact Us</Link>
 
@@ -28,7 +29,7 @@ const Header = () => {
                         {
                             user?.email ? <button className='signOut' onClick={logOut}><Link className='navLink py-2 px-5 bg-primary text-white rounded-pill' to="/home">Signout</Link></button> : <Link className='navLink py-2 px-5 bg-primary text-white rounded-pill mr-2' to="/login">Signin</Link>
                         }
-                        <Link className='navLink py-2 px-5 bg-primary text-white rounded-pill' to="/admin/add-destinations">Admin</Link>
+                        <Link className='navLink py-2 px-5 bg-primary text-white rounded-pill' to="/admin">Admin</Link>
 
 
                     </Nav>

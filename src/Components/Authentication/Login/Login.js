@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import './Login.css';
 import useAuth from '../../Hooks/useAuth';
 const Login = () => {
 
+    const [user, setUser] = useState({});
     const { signInUsingGoogle } = useAuth();
     const location = useLocation();
     const history = useHistory();
-
-    const redirect_uri = location.state?.from || '/home';
+    const redirect_uri = location?.state?.from || '/';
 
     const handleGoogleLogin = () => {
-        signInUsingGoogle()
+        signInUsingGoogle(location, history)
             .then(result => {
                 history.push(redirect_uri);
+
+                setUser(result.user);
+                sessionStorage.setItem("email", result.user.email);
             })
     }
 

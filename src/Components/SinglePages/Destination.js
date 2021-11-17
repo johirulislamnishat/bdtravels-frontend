@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Container, Button, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../Shared/Common.css'
+import '../Shared/Common.css';
+import Header from '../Navbar/Navigation'
 
 
 const Destination = () => {
+
 
     const [travelPackages, settravelPackage] = useState([]);
 
@@ -21,54 +23,60 @@ const Destination = () => {
     }, [])
 
     return (
-        <div className='my-5'>
 
-            <h2 className='text-center textColor'>Top Destinations</h2>
-            <Container>
+        <>
+            <div>
+                <Header />
+            </div>
+            <div className='my-5'>
 
-                {travelPackages.length === 0 ? <Button className='w-100 mx-auto' variant="primary" disabled>
-                    <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                    />
-                    <span className='ml-2'>Loading...</span>
-                </Button> :
-                    <Row xs={1} md={3} className="g-4 mt-2">
+                <h2 className='text-center textColor'>Top Destinations</h2>
+                <Container>
 
-                        {
-                            travelPackages.map(travelPackage => (
-                                <Col key={travelPackage._id}>
-                                    <Card>
-                                        <Card.Img variant="top" className='destinationImage' src={travelPackage.img} />
-                                        <Card.Body>
-                                            <div className='d-flex justify-content-between'>
+                    {travelPackages.length === 0 ? <Button className='w-100 mx-auto' variant="primary" disabled>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                        <span className='ml-2'>Loading...</span>
+                    </Button> :
+                        <Row xs={1} md={3} className="g-4 mt-2">
 
-                                                <Card.Title>{travelPackage.title}</Card.Title>
+                            {
+                                travelPackages.map(travelPackage => (
+                                    <Col key={travelPackage._id}>
+                                        <Card>
+                                            <Card.Img variant="top" className='destinationImage' src={travelPackage.img} />
+                                            <Card.Body>
+                                                <div className='d-flex justify-content-between'>
 
-                                                <Card.Title>$ {travelPackage.discount}</Card.Title>
-                                            </div>
-                                            <Card.Text>{travelPackage.description}
-                                            </Card.Text>
+                                                    <Card.Title>{travelPackage.title}</Card.Title>
 
-                                            <Card.Text><i className='text-secondary'>{location} </i> {travelPackage.location}</Card.Text>
+                                                    <Card.Title>$ {travelPackage.discount}</Card.Title>
+                                                </div>
+                                                <Card.Text>{travelPackage.description}
+                                                </Card.Text>
 
-                                            <div className='d-flex justify-content-between'>
-                                                <Link to={`/destination-details/${travelPackage._id}`}><Button variant="primary" className='py-2 px-5 rounded-pill'>Book Now</Button>
-                                                </Link>
-                                            </div>
-                                        </Card.Body>
-                                    </Card>
-                                </Col>
-                            ))
-                        }
+                                                <Card.Text><i className='text-secondary'>{location} </i> {travelPackage.location}</Card.Text>
 
-                    </Row>
-                }
-            </Container>
-        </div>
+                                                <div className='d-flex justify-content-between'>
+                                                    <Link to={`/destination-details/${travelPackage._id}`}><Button variant="primary" className='py-2 px-5 rounded-pill'>Book Now</Button>
+                                                    </Link>
+                                                </div>
+                                            </Card.Body>
+                                        </Card>
+                                    </Col>
+                                ))
+                            }
+
+                        </Row>
+                    }
+                </Container>
+            </div>
+        </>
     );
 };
 
